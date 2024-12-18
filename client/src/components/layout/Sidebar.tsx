@@ -65,7 +65,7 @@ const Sidebar = () => {
               type='primary'
               style={{
                 width: '100%',
-                backgroundColor: 'cyan',
+                backgroundColor: '#FFF',
                 color: '#000',
                 fontWeight: 600,
                 textTransform: 'uppercase',
@@ -79,7 +79,7 @@ const Sidebar = () => {
         )}
       </Sider>
       <Layout>
-        <Content style={{padding: '2rem', background: '#BBE1FA'}}>
+        <Content style={{padding: '2rem', background: '#FFF'}}>
           <div
             style={{
               padding: '1rem',
