@@ -5,6 +5,9 @@ import { IUser } from './user.interface';
 import User from './user.model';
 import verifyPassword from '../../utils/verifyPassword';
 import bcrypt from 'bcrypt';
+import {getUserPermissions} from '../../modules/role-permission/test';
+import { Types } from 'mongoose';
+
 
 class UserServices {
   private model = User;
@@ -29,7 +32,19 @@ class UserServices {
       await verifyPassword(payload.password, user.password);
 
       const token = generateToken({ _id: user._id, email: user.email });
-      return { token };
+
+      // Get user permissions
+      const permissions = await getUserPermissions(user._id);
+
+      return {
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          permissions
+        }
+      };
     } else {
       throw new CustomError(httpStatus.BAD_REQUEST, 'WrongCredentials');
     }

@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 import { IUser } from './user.interface';
 import hashPassword from '../../utils/hashPassword';
 import { UserRole, UserStatus } from '../../constant/userRole';
+import Role from '../role-permission/role.model';
 
 const userSchema = new Schema<IUser>(
   {
@@ -11,7 +12,11 @@ const userSchema = new Schema<IUser>(
     title: { type: String },
     description: { type: String },
     avatar: { type: String },
-    role: { type: String, enum: UserRole, default: 'USER' },
+    role: { 
+      type: Schema.Types.ObjectId,
+      ref: 'Role',
+      // required: true       
+    },
     status: { type: String, enum: UserStatus, default: 'ACTIVE' },
     address: { type: String },
     phone: { type: String },
@@ -32,6 +37,7 @@ userSchema.pre('save', async function (next) {
 
   next();
 });
+
 
 const User = model<IUser>('user', userSchema);
 export default User;

@@ -2,13 +2,19 @@ import { Server } from 'http';
 import mongoose from 'mongoose';
 import app from './app';
 import config from './config';
+import {initialUser} from './utils/utils';
 
 let server: Server;
 
 async function main() {
   try {
     await mongoose.connect(config.database_url as string);
-    console.log("DB Connected!")
+    console.log('✅ Database connected successfully!');
+
+    // Initialize roles and default admin user
+    await initialUser();
+    console.log('✅ Roles and default user initialized!');
+
     server = app.listen(config.port, () => {
       console.log(`app is listening on port ${config.port}`);
     });

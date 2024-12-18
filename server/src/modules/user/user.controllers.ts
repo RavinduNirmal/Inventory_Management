@@ -20,7 +20,6 @@ class UserControllers {
 
   // register new account
   register = asyncHandler(async (req, res) => {
-    console.log("Hello Registering")
     const result = await this.services.register(req.body);
 
     sendResponse(res, {
@@ -33,7 +32,6 @@ class UserControllers {
 
   // login into your registered account
   login = asyncHandler(async (req, res) => {
-    console.log("Logging User")
     const result = await this.services.login(req.body);
 
     sendResponse(res, {
