@@ -5,7 +5,6 @@ import {
   AreaChartOutlined,
   MoneyCollectFilled,
   ProfileFilled,
-  UserOutlined,
 } from '@ant-design/icons';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -46,9 +45,5 @@ export const sidebarItems = [
   //   label: <NavLink to='/sales-history'>SALES HISTORY</NavLink>,
   //   icon: React.createElement(HistoryOutlined),
   // },
-  {
-    key: 'Profile',
-    label: <NavLink to='/profile'>PROFILE</NavLink>,
-    icon: React.createElement(UserOutlined),
-  },
+  
 ];

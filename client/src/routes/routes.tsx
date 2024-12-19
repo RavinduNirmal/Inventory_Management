@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ProtectRoute from '../components/layout/ProtectRoute';
-import Sidebar from '../components/layout/Sidebar';
 import CreateProduct from '../pages/CreateProduct';
 import Dashboard from '../pages/Dashboard';
 import NotFound from '../pages/NotFound';
@@ -14,11 +13,16 @@ import SaleManagementPage from '../pages/managements/SaleManagementPage';
 import SellerManagementPage from '../pages/managements/SellerManagementPage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
 import EditProfilePage from '../pages/EditProfilePage';
+import AppLayout from '../components/layout/AppLayout';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Sidebar />,
+    element: (
+      <ProtectRoute>
+        <AppLayout />
+      </ProtectRoute>
+    ),
     children: [
       {
         path: '/',

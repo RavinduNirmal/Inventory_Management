@@ -37,11 +37,11 @@ const Sidebar = () => {
           position: 'relative',
         }}
       >
-        <div className='demo-logo-vertical'>
+        {/* <div className='demo-logo-vertical'>
           <h1 style={{color: '#fff', padding: '1rem', fontSize: '1.8rem', textAlign: 'center'}}>
             WELCOME
           </h1>
-        </div>
+        </div> */}
         <Menu
           theme='dark'
           mode='inline'
