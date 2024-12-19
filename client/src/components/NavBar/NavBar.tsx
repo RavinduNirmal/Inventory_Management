@@ -1,10 +1,10 @@
 import { Link,useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import { UserOutlined,LogoutOutlined,BellFilled } from '@ant-design/icons';
-import { Avatar } from 'antd';
+import { Avatar,Row,Col } from 'antd';
 import {useAppDispatch} from '../../redux/hooks';
 import {logoutUser} from '../../redux/services/authSlice';
-
+import userProPic from '../../assets/logo.png';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -17,16 +17,40 @@ const Navbar = () => {
     <header className="navbar">
       <div className="navbar-brand">
         <Link to="/">
-          <h1
+          <Row
+            gutter={14}
             style={{
-              color: "#fff",
-              padding: "1rem",
-              fontSize: "1.8rem",
-              textAlign: "center",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              flexDirection: "row-reverse",
             }}
           >
-            INVENTORY
-          </h1>
+            <Col style={{ marginRight: "1px" }}>
+              <h2
+                style={{
+                  color: "#fff",
+                  padding: "1rem 0",
+                  fontSize: "1.4rem",
+                  textAlign: "left",
+                }}
+              >
+                INVENTORY
+              </h2>
+            </Col>
+            <Col>
+              <img
+                src={userProPic}
+                alt="logo"
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+            </Col>
+          </Row>
         </Link>
       </div>
       <nav className="navbar-links">
@@ -45,7 +69,7 @@ const Navbar = () => {
           >
             <BellFilled
               style={{
-                fontSize: "1.3rem",
+                fontSize: "1.2rem",
                 marginRight: "5px",
                 color: "inherit",
               }}

@@ -1,93 +1,136 @@
-import {useState} from 'react';
-import {Outlet, useNavigate} from 'react-router-dom';
-import {Button, Layout, Menu} from 'antd';
-import {LogoutOutlined} from '@ant-design/icons';
-import {sidebarItems} from '../../constant/sidebarItems';
-import {useAppDispatch} from '../../redux/hooks';
-import {logoutUser} from '../../redux/services/authSlice';
+// import {Outlet} from 'react-router-dom';
+// import {Layout, Menu} from 'antd';
+// import {sidebarItems} from '../../constant/sidebarItems';
 
-const {Content, Sider} = Layout;
+// const {Content, Sider} = Layout;
+
+// const Sidebar = () => {
+//   return (
+//     <Layout style={{height: '100vh'}}>
+//       <Sider
+//         breakpoint='lg'
+//         collapsedWidth='0'
+//         width='220px'
+//         style={{
+//           backgroundColor: '#1877F2',
+//           position: 'relative',
+//         }}
+//       >    
+//         <Menu
+//           theme='dark'
+//           mode='inline'
+//           style={{backgroundColor: '#1877F2', fontWeight: '700',marginTop:'40px'}}
+//           defaultSelectedKeys={['Dashboard']}
+//           items={sidebarItems}
+//         />        
+//       </Sider>
+//       <Layout>
+//         <Content style={{padding: '2rem', background: '#FFF'}}>
+//           <div
+//             style={{
+//               padding: '1rem',
+//               maxHeight: 'calc(100vh - 4rem)',
+//               minHeight: 'calc(100vh - 4rem)',
+//               background: '#fff',
+//               borderRadius: '1rem',
+//               overflow: 'auto',
+//             }}
+//           >
+//             <Outlet />
+//           </div>
+//         </Content>
+//       </Layout>
+//     </Layout>
+//   );
+// };
+
+// export default Sidebar;
+
+
+import { Outlet } from "react-router-dom";
+import { Layout, Menu } from "antd";
+import { sidebarItems } from "../../constant/sidebarItems";
+
+const { Content, Sider } = Layout;
 
 const Sidebar = () => {
-  const [showLogoutBtn, setShowLogoutBtn] = useState(true);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    dispatch(logoutUser());
-    navigate('/');
-  };
-
   return (
-    <Layout style={{height: '100vh'}}>
+    <Layout style={{ height: "100vh" }}>
       <Sider
-        breakpoint='lg'
-        collapsedWidth='0'
-        onCollapse={(collapsed, type) => {
-          if (type === 'responsive') {
-            setShowLogoutBtn(!collapsed);
-          }
-          if (type === 'clickTrigger') {
-            setShowLogoutBtn(!collapsed);
-          }
-        }}
-        width='220px'
+        breakpoint="lg"
+        collapsedWidth="0"
+        width="220px"
         style={{
-          backgroundColor: '#164863',
-          position: 'relative',
+          backgroundColor: "#1877F2",
+          position: "relative",
         }}
       >
-        {/* <div className='demo-logo-vertical'>
-          <h1 style={{color: '#fff', padding: '1rem', fontSize: '1.8rem', textAlign: 'center'}}>
-            WELCOME
-          </h1>
-        </div> */}
         <Menu
-          theme='dark'
-          mode='inline'
-          style={{backgroundColor: '#164863', fontWeight: '700'}}
-          defaultSelectedKeys={['Dashboard']}
-          items={sidebarItems}
+          theme="dark"
+          mode="inline"
+          style={{
+            backgroundColor: "#1877F2",
+            fontWeight: "700",
+            marginTop: "40px",
+            transition: "all 0.3s ease",
+          }}
+          defaultSelectedKeys={["Dashboard"]}
+          items={sidebarItems.map((item) => ({
+            ...item,
+            label: (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  fontSize: "13px",
+                  fontWeight: "550",
+                  color: "white",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.fontSize = "15px";
+                  e.currentTarget.style.fontWeight = "700";
+                  e.currentTarget.style.color = "white";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.fontSize = "13px";
+                  e.currentTarget.style.fontWeight = "550";
+                  e.currentTarget.style.color = "white";
+                }}
+              >
+                <div
+                  style={{
+                    transition: "transform 0.3s ease",
+                    transform: "scale(1)",
+                    marginTop: "7px", 
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.2)"; 
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)"; 
+                  }}
+                >
+                  {item.icon}
+                </div>
+                {item.label}
+              </div>
+            ),
+            icon: null, 
+          }))}
         />
-        {showLogoutBtn && (
-          <div
-            style={{
-              margin: 'auto',
-              position: 'absolute',
-              bottom: 0,
-              padding: '1rem',
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'center',
-            }}
-          >
-            <Button
-              type='primary'
-              style={{
-                width: '100%',
-                backgroundColor: '#FFF',
-                color: '#000',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-              }}
-              onClick={handleClick}
-            >
-              <LogoutOutlined />
-              Logout
-            </Button>
-          </div>
-        )}
       </Sider>
       <Layout>
-        <Content style={{padding: '2rem', background: '#FFF'}}>
+        <Content style={{ padding: "2rem", background: "#FFF" }}>
           <div
             style={{
-              padding: '1rem',
-              maxHeight: 'calc(100vh - 4rem)',
-              minHeight: 'calc(100vh - 4rem)',
-              background: '#fff',
-              borderRadius: '1rem',
-              overflow: 'auto',
+              padding: "1rem",
+              maxHeight: "calc(100vh - 4rem)",
+              minHeight: "calc(100vh - 4rem)",
+              background: "#fff",
+              borderRadius: "1rem",
+              overflow: "auto",
             }}
           >
             <Outlet />
@@ -99,3 +142,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
