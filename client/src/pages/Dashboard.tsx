@@ -72,8 +72,6 @@
 
 // export default Dashboard;
 
-
-import React from 'react';
 import { Col, Row, Card, Typography } from 'antd';
 import MonthlyChart from '../components/Charts/MonthlyChart';
 import Loader from '../components/Loader';
