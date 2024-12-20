@@ -246,7 +246,7 @@ const Sidebar = () => {
         />
       </Sider>
       <Layout>
-        <Content style={{ padding: "2rem", background: "#FFF" }}>
+        <Content style={{ padding: "2rem", background: "#FFF",textAlign:'center' }}>
           <Breadcrumb
             style={{ marginBottom: "0rem" }}
             separator=">"
