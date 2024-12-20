@@ -24,6 +24,7 @@ app.use('/api/v1', rootRouter); // Adjust base route if necessary
 // Global error handling middleware
 // app.use(globalErrorHandler);
 
+console.log("Hello");
 // Handle 404 errors
 app.use(notFound);
 
