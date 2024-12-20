@@ -26,6 +26,7 @@ app.use('/api/v1', rootRouter); // Adjust base route if necessary
 
 console.log("Hello");
 console.log("Hello");
+console.log("Hello");
 // Handle 404 errors
 app.use(notFound);
 
